@@ -1,0 +1,38 @@
+<ItemLookupResponse
+	xmlns="http://webservices.amazon.com/AWSECommerceService/2005-10-05">
+	<OperationRequest>
+		<HTTPHeaders>
+			<Header Name="UserAgent"
+				Value="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/530.5 (KHTML, like Gecko) Chrome/2.0.172.30 Safari/530.5"></Header>
+		</HTTPHeaders>
+		<RequestId>29b07be6-ed2c-4da8-b352-74b679df58a5
+		</RequestId>
+		<Arguments>
+			<Argument Name="Operation" Value="ItemLookup"></Argument>
+			<Argument Name="Service" Value="AWSECommerceService"></Argument>
+			<Argument Name="ItemId" Value="1932394842"></Argument>
+			<Argument Name="AWSAccessKeyId" Value="0MWZJAPHC4QKRJ239X82"></Argument>
+			<Argument Name="ResponseGroup" Value="Medium"></Argument>
+			<Argument Name="AssociateTag" Value="kouitinc-20"></Argument>
+		</Arguments>
+		<RequestProcessingTime>0.0253780000000000
+		</RequestProcessingTime>
+	</OperationRequest>
+	<Items>
+		<Request>
+			<IsValid>True</IsValid>
+			<ItemLookupRequest>
+				<Condition>New</Condition>
+				<DeliveryMethod>Ship</DeliveryMethod>
+				<IdType>ASIN</IdType>
+				<MerchantId>Amazon</MerchantId>
+				<OfferPage>1</OfferPage>
+				<ItemId>1932394842</ItemId>
+				<ResponseGroup>Medium</ResponseGroup>
+				<ReviewPage>1</ReviewPage>
+			</ItemLookupRequest>
+		</Request>
+		<Item>
+			<ASIN>1932394842</ASIN>
+			<DetailPageURL>
+				http://www.amazon.com/Groovy-Action-Dierk-Koenig/dp/1932394842%3FSubscriptionId%3D0MWZJAPHC4QKRJ239X82%26tag%3Dkouitinc-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D1932394842</DetailPageURL><SalesRank>124672</SalesRank><SmallImage><URL>http://ecx.images-amazon.com/images/I/51bPfgE0MXL._SL75_.jpg</URL><Height Units="pixels">75</Height><Width Units="pixels">59</Width></SmallImage><MediumImage><URL>http://ecx.images-amazon.com/images/I/51bPfgE0MXL._SL160_.jpg</URL><Height Units="pixels">160</Height><Width Units="pixels">127</Width></MediumImage><LargeImage><URL>http://ecx.images-amazon.com/images/I/51bPfgE0MXL.jpg</URL><Height Units="pixels">500</Height><Width Units="pixels">396</Width></LargeImage><ImageSets><ImageSet Category="primary"><SwatchImage><URL>http://ecx.images-amazon.com/images/I/51bPfgE0MXL._SL30_.jpg</URL><Height Units="pixels">30</Height><Width Units="pixels">24</Width></SwatchImage><SmallImage><URL>http://ecx.images-amazon.com/images/I/51bPfgE0MXL._SL75_.jpg</URL><Height Units="pixels">75</Height><Width Units="pixels">59</Width></SmallImage><MediumImage><URL>http://ecx.images-amazon.com/images/I/51bPfgE0MXL._SL160_.jpg</URL><Height Units="pixels">160</Height><Width Units="pixels">127</Width></MediumImage><LargeImage><URL>http://ecx.images-amazon.com/images/I/51bPfgE0MXL.jpg</URL><Height Units="pixels">500</Height><Width Units="pixels">396</Width></LargeImage></ImageSet></ImageSets><ItemAttributes><Author>Dierk Koenig</Author><Author>Andrew Glover</Author><Author>Paul King</Author><Author>Guillaume Laforge</Author><Author>Jon Skeet</Author><Binding>Paperback</Binding><Creator Role="Foreword">James Gosling</Creator><DeweyDecimalNumber>005.133</DeweyDecimalNumber><EAN>9781932394849</EAN><Edition>illustrated edition</Edition><ISBN>1932394842</ISBN><Label>Manning Publications</Label><Languages><Language><Name>English</Name><Type>Original Language</Type></Language><Language><Name>English</Name><Type>Unknown</Type></Language><Language><Name>English</Name><Type>Published</Type></Language></Languages><ListPrice><Amount>4999</Amount><CurrencyCode>USD</CurrencyCode><FormattedPrice>$49.99</FormattedPrice></ListPrice><Manufacturer>Manning Publications</Manufacturer><NumberOfItems>1</NumberOfItems><NumberOfPages>696</NumberOfPages><PackageDimensions><Height Units="hundredths-inches">140</Height><Length Units="hundredths-inches">920</Length><Weight Units="hundredths-pounds">255</Weight><Width Units="hundredths-inches">730</Width></PackageDimensions><ProductGroup>Book</ProductGroup><PublicationDate>2007-01-17</PublicationDate><Publisher>Manning Publications</Publisher><Studio>Manning Publications</Studio><Title>Groovy in Action</Title></ItemAttributes><OfferSummary><LowestNewPrice><Amount>2848</Amount><CurrencyCode>USD</CurrencyCode><FormattedPrice>$28.48</FormattedPrice></LowestNewPrice><LowestUsedPrice><Amount>2649</Amount><CurrencyCode>USD</CurrencyCode><FormattedPrice>$26.49</FormattedPrice></LowestUsedPrice><TotalNew>38</TotalNew><TotalUsed>14</TotalUsed><TotalCollectible>0</TotalCollectible><TotalRefurbished>0</TotalRefurbished></OfferSummary><EditorialReviews><EditorialReview><Source>Product Description</Source><Content>"... a clear and detailed exposition of what is groovy about   Groovy. I'm glad to have it on my bookshelf."&lt;br&gt;  &lt;i&gt;--From the Foreword by James Gosling&lt;/i&gt;&lt;P&gt;  Groovy, the brand-new language for the Java platform, brings to Java many   of the features that have made Ruby popular. Groovy in Action is a   comprehensive guide to Groovy programming, introducing Java developers to   the new dynamic features that Groovy provides. To bring you Groovy in   Action, Manning again went to the source by working with a team of expert   authors including both members and the Manager of the Groovy Project team.   The result is the true definitive guide to the new Groovy language.&lt;P&gt;  Groovy in Action introduces Groovy by example, presenting lots of reusable   code while explaining the underlying concepts. Java developers new to   Groovy find a smooth transition into the dynamic programming world. Groovy   experts gain a solid reference that challenges them to explore Groovy   deeply and creatively.&lt;P&gt;  Because Groovy is so new, most readers will be learning it from scratch.   Groovy in Action quickly moves through the Groovy basics, including:&lt;P&gt;  * Simple and collective Groovy data types&lt;br&gt;  * Working with Closures and Groovy Control Structures&lt;br&gt;  * Dynamic Object Orientation, Groovy style&lt;P&gt;  Readers are presented with rich and detailed examples illustrating Groovy's   enhancements to Java, including&lt;P&gt;  * How to Work with Builders and the GDK&lt;br&gt;  * Database programming with Groovy&lt;P&gt;  Groovy in Action then demonstrates how to Integrate Groovy with XML, and   provides,&lt;P&gt;  * Tips and Tricks&lt;br&gt;  * Unit Testing and Build Support&lt;br&gt;  * Groovy on Windows&lt;P&gt;  An additional bonus is a chapter dedicated to Grails, the Groovy Web   Application Framework.</Content></EditorialReview></EditorialReviews></Item></Items></ItemLookupResponse>
