@@ -1,42 +1,54 @@
 package com.kousenit.services
 
-import com.kousenit.dao.BookDAOimport com.kousenit.dao.JdoBookDAOimport groovy.util.XmlParserimport com.kousenit.beans.Book
-import com.kousenit.dao.DAOFactoryimport javax.cache.Cacheimport javax.cache.CacheManagerimport java.util.Collectionsimport com.google.appengine.api.memcache.stdimpl.GCacheFactoryimport java.util.Setimport java.util.HashSetclass AmazonBookService {
-	def baseUrl = 'http://ecs.amazonaws.com/onca/xml'
+import com.kousenit.dao.BookDAOimport com.kousenit.dao.JdoBookDAO
+import groovy.lang.Singleton;
+import groovy.util.XmlParserimport com.kousenit.beans.Book
+import com.kousenit.dao.DAOFactoryimport javax.cache.Cacheimport javax.cache.CacheManagerimport java.util.Collectionsimport com.google.appengine.api.memcache.stdimpl.GCacheFactoryimport java.util.Setimport java.util.HashSet
+import java.util.logging.Logger
+// @Singletonclass AmazonBookService {
+	private static final Logger log = Logger.getLogger(AmazonBookService.class.name);
 	
 	def params = ['Service':'AWSECommerceService',
 	              'Operation':'ItemLookup',
 	              'AssociateTag':'kouitinc-20',
 	              'ResponseGroup':'Medium']
-	
-	BookDAO dao
+
+	static AmazonBookService instance = new AmazonBookService()
+    
+	BookDAO dao = DAOFactory.instance.bookDAO
 	Cache cache
 	SignedRequestsHelper helper = new SignedRequestsHelper()
-	
-	private static AmazonBookService service = new AmazonBookService()
-	
+
 	private AmazonBookService() {
-		dao = DAOFactory.instance.bookDAO
-		Map props = [(GCacheFactory.EXPIRATION_DELTA):60*60*24]
-		
-		cache = CacheManager.instance.cacheFactory.createCache(props)
+		int seconds = 60*(24*60 - 1)
+		Map props = [(GCacheFactory.EXPIRATION_DELTA):seconds]
+        cache = CacheManager.instance.cacheFactory.createCache(props)
 	}
 	
-	static AmazonBookService getInstance() { service }
-	
 	def getBooks() {
-		def books = dao.findAllBooks()
 		def results = []
-		books.each { book ->
-			if (cache.get(book.asin)) {
-				book = cache.get(book.asin)
-			} else {
-				book = fillInBookDetails(book)
-				cache.put(book.asin,book)
+		def books = dao.findAllBooks()
+		if (cache.size() == 0) {
+			books.each { book ->
+		   		cache.put(book.asin,book)
+			   	results << book
 			}
-			results << book
+		} else {
+			books.each { book ->
+				results << cache.get(book.asin)
+			}
 		}
 		return results
+	}
+
+	def refreshDatabase() {
+		def books = dao.findAllBooks()
+		books.each { book ->
+			Book b = new Book(book.asin,book.recommendation)
+			b = fillInBookDetails(b)
+			dao.updateBook(book.id, b)
+			cache.put(b.asin,b)
+		}
 	}
 	
 	def addBook(asin,rec) {
@@ -58,7 +70,7 @@ import com.kousenit.dao.DAOFactoryimport javax.cache.Cacheimport javax.cache.C
 		def url = helper.sign(params)
 		
 //		def queryString = params.collect { k,v -> "$k=$v" }.join('&')
-//		def url = "${baseUrl}?${queryString}&ItemId=${book.asin}"
+//		def url = "${baseUrl}?${queryString}"
 		def response = new XmlSlurper().parse(url)
 		def item = response.Items.Item
 		book.title = item.ItemAttributes.Title
@@ -66,6 +78,8 @@ import com.kousenit.dao.DAOFactoryimport javax.cache.Cacheimport javax.cache.C
 		book.formattedPrice = item.ItemAttributes.ListPrice.FormattedPrice
 		book.mediumImageURL = item.MediumImage.URL
 		book.detailPageURL = item.DetailPageURL
+
+		log.info book.toString()
 		return book
 	}
 }

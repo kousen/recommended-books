@@ -10,4 +10,5 @@ public interface BookDAO {
 	Set<Book> findAllBooks();
 	Long addBook(Book b);
 	boolean removeBook(Long id);
+	boolean updateBook(Long id, Book newData);
 }

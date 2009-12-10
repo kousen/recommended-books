@@ -1,0 +1,4 @@
+# robots.txt for http://recommended-books.kousenit.com
+
+User-agent: *
+Disallow:

@@ -12,16 +12,15 @@ import javax.jdo.Transaction;
 import com.kousenit.beans.Book;
 
 public class JdoBookDAO implements BookDAO {
-	
+
 	private PersistenceManagerFactory pmf = PMF.get();
 
 	public Long addBook(Book b) {
-		System.out.println(b);
 		Book book = findByAsin(b.getAsin());
 		if (book != null) {
 			return book.getId();
 		}
-		
+
 		PersistenceManager pm = pmf.getPersistenceManager();
 		try {
 			pm.currentTransaction().begin();
@@ -34,6 +33,21 @@ public class JdoBookDAO implements BookDAO {
 			pm.close();
 		}
 		return b.getId();
+	}
+
+	public boolean updateBook(Long id, Book newData) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		try {
+			Book b = pm.getObjectById(Book.class, id);
+			b.setAuthor(newData.getAuthor());
+			b.setDetailPageURL(newData.getDetailPageURL());
+			b.setFormattedPrice(newData.getFormattedPrice());
+			b.setMediumImageURL(newData.getMediumImageURL());
+			b.setTitle(newData.getTitle());
+		} finally {
+			pm.close();
+		}
+		return true;
 	}
 
 	public Set<Book> findAllBooks() {
@@ -92,7 +106,7 @@ public class JdoBookDAO implements BookDAO {
 			e.printStackTrace();
 		} finally {
 			pm.close();
-		}		
+		}
 		return true;
 	}
 }

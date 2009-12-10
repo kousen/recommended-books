@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kousenit.services.AmazonBookService;
 
 @SuppressWarnings("serial")
-public class AddBookServlet extends HttpServlet {
+public class UpdateDatabase extends HttpServlet {
 	private AmazonBookService service;
 	
 	@Override
@@ -19,11 +19,8 @@ public class AddBookServlet extends HttpServlet {
 	}
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		service.addBook(
-				req.getParameter("asin"),
-				req.getParameter("rec"));
-		resp.sendRedirect("listbooks");
+		service.refreshDatabase();
 	}
 }

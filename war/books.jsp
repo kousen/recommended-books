@@ -9,10 +9,37 @@
   </head>
 
   <body>
-    <h1><a href="http://www.kousenit.com"><img alt="Kousen IT logo" src="KousenIT_LoRes.jpg" align="middle" width="200px"/></a>Recommended Books</h1>
-    
     <% UserService us = UserServiceFactory.getUserService(); %>
-	
+<% if (us.isUserLoggedIn() && us.isUserAdmin()) { %>
+  	<table>
+  		<tr>
+  			<td width="75%">
+    <h1><a href="http://www.kousenit.com"><img alt="Kousen IT logo" src="KousenIT_LoRes.jpg" align="middle" width="200px"/></a>Recommended Books</h1>  			
+  			</td>
+  			<td>
+	<form action="addbook" method="post">
+		<table border="2">
+			<tr>
+				<td>ASIN</td>
+				<td><input type='text' name='asin' width="25"/></td>
+			</tr>
+			<tr>
+				<td>Recommendation</td>
+				<td><textarea rows="2" cols="20" name="rec"></textarea></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Add Book"/></td>
+				<td><input type="reset" /></td>
+			</tr>
+		</table>		
+	</form>
+<% } else { %>
+    <h1><a href="http://www.kousenit.com"><img alt="Kousen IT logo" src="KousenIT_LoRes.jpg" align="middle" width="200px"/></a>Recommended Books</h1>
+<% } %>  			
+  			</td>
+  		</tr>
+  	</table>
+    
     <table cellspacing="1">
     	<thead>
       <tr>
@@ -49,9 +76,6 @@
     <p><a href="<%= us.createLogoutURL("/listbooks") %>">Logout</a></p>
     <% } else { %>
     <p><a href="<%= us.createLoginURL("/listbooks") %>">Login</a></p>
-    <% } %>
-    <% if (us.isUserLoggedIn() && us.isUserAdmin()) { %>
-	    <a href="addbook.html">Add a book</a>
     <% } %>
   </body>
 </html>
